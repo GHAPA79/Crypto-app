@@ -1,3 +1,6 @@
+import chartUp from "../../assets/chart-up.svg";
+import chartDown from "../../assets/chart-down.svg";
+
 const TableCoins = ({ coins }) => {
   console.log(coins);
   return (
@@ -18,7 +21,7 @@ const TableCoins = ({ coins }) => {
             <tr key={coin.id}>
               <td>
                 <div>
-                  <img src={coin.image} alt="Image coin" />
+                  <img src={coin.image} alt="Coin image" />
                   <span>{coin.symbol.toUpperCase()}</span>
                 </div>
               </td>
@@ -28,6 +31,14 @@ const TableCoins = ({ coins }) => {
               <td>{coin.price_change_percentage_24h.toFixed(2)}%</td>
               {/* toFixed(2) method means show till 2 number after point. */}
               <td>{coin.total_volume.toLocaleString()}</td>
+              <td>
+                <img
+                  src={
+                    coin.price_change_percentage_24h > 0 ? chartUp : chartDown
+                  }
+                  alt="Chart image"
+                />
+              </td>
             </tr>
           ))}
         </tbody>
