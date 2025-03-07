@@ -1,6 +1,8 @@
 import chartUp from "../../assets/chart-up.svg";
 import chartDown from "../../assets/chart-down.svg";
 
+import styles from "./TableCoins.module.css";
+
 const TableRow = ({
   coin: {
     image,
@@ -15,7 +17,7 @@ const TableRow = ({
   return (
     <tr>
       <td>
-        <div>
+        <div className={styles.symbol}>
           <img src={image} alt="Coin image" />
           <span>{symbol.toUpperCase()}</span>
         </div>
@@ -23,7 +25,9 @@ const TableRow = ({
       <td>{name}</td>
       <td>${current_price.toLocaleString()}</td>
       {/* toLocaleString() method is for seperate numbers in 3 by comma(,) */}
-      <td>{price_change.toFixed(2)}%</td>
+      <td className={price_change > 0 ? styles.positive : styles.negative}>
+        {price_change.toFixed(2)}%
+      </td>
       {/* toFixed(2) method means show till 2 number after point. */}
       <td>{total_volume.toLocaleString()}</td>
       <td>
