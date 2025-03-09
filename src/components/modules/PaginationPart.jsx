@@ -1,6 +1,19 @@
 import { Pagination } from "@mui/material";
 
-const PaginationPart = () => {
+const PaginationPart = ({ setPage }) => {
+  const paginationHadler = (event) => {
+    if (event.target.dataset.testid) {
+      if (event.target.dataset.testid === "NavigateNextIcon") {
+        setPage((page) => page + 1);
+      } else {
+        setPage((page) => page - 1);
+      }
+    } else {
+      const value = +event.target.innerText;
+      setPage(value);
+    }
+  };
+
   return (
     <Pagination
       style={{
@@ -14,6 +27,7 @@ const PaginationPart = () => {
       count={10}
       color="secondary"
       size="large"
+      onClick={paginationHadler}
     />
   );
 };
