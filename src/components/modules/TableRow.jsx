@@ -13,6 +13,7 @@ const TableRow = ({
     price_change_percentage_24h: price_change,
     // We can change the name by this format above in destructuring.
   },
+  currency,
 }) => {
   return (
     <tr>
@@ -23,7 +24,10 @@ const TableRow = ({
         </div>
       </td>
       <td>{name}</td>
-      <td>${current_price.toLocaleString()}</td>
+      <td>
+        {currency === "eur" ? "€" : currency === "jpy" ? "¥" : "$"}
+        {current_price.toLocaleString()}
+      </td>
       {/* toLocaleString() method is for seperate numbers in 3 by comma(,) */}
       <td className={price_change > 0 ? styles.positive : styles.negative}>
         {price_change.toFixed(2)}%
