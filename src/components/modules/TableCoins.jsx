@@ -5,7 +5,6 @@ import TableRow from "./TableRow";
 import styles from "./TableCoins.module.css";
 
 const TableCoins = ({ coins, isLoading, currency }) => {
-  console.log(coins);
   return (
     <div className={styles.container}>
       {isLoading ? (
