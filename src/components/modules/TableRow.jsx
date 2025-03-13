@@ -14,11 +14,15 @@ const TableRow = ({
     // We can change the name by this format above in destructuring.
   },
   currency,
+  setChart,
 }) => {
+  const showHandler = () => {
+    setChart(true);
+  };
   return (
     <tr>
       <td>
-        <div className={styles.symbol}>
+        <div className={styles.symbol} onClick={showHandler}>
           <img src={image} alt="Coin image" />
           <span>{symbol.toUpperCase()}</span>
         </div>
