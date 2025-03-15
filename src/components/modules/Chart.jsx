@@ -14,15 +14,57 @@ import {
 
 const Chart = ({ chart, setChart }) => {
   const [type, setType] = useState("prices");
-  console.log(convertData(chart, type));
+  console.log(chart);
+
   return (
     <div className={styles.container}>
-      <span className={styles.cross} onClick={() => setChart(null)}>
-        X
-      </span>
       <div className={styles.chart}>
+        <div className={styles.name}>
+          <div>
+            <img src={chart.coin.image} alt="Coin logo" />
+            <p>{chart.coin.name}</p>
+          </div>
+          <span className={styles.cross} onClick={() => setChart(null)}>
+            X
+          </span>
+        </div>
         <div className={styles.graph}>
           <ChartComponent data={convertData(chart, type)} type={type} />
+        </div>
+        <div className={styles.types}>
+          <button
+            onClick={() => setType("prices")}
+            className={type === "prices" ? styles.selected : null}
+          >
+            Prices
+          </button>
+          <button
+            onClick={() => setType("market_caps")}
+            className={type === "market_caps" ? styles.selected : null}
+          >
+            Market Caps
+          </button>
+          <button
+            onClick={() => setType("total_volumes")}
+            className={type === "total_volumes" ? styles.selected : null}
+          >
+            Total Volume
+          </button>
+          {/* The button setState must be like this "() => setState()" */}
+        </div>
+        <div className={styles.details}>
+          <div>
+            <p>Prices:</p>
+            <span>${chart.coin.current_price.toLocaleString()}</span>
+          </div>
+          <div>
+            <p>ATH:</p>
+            <span>${chart.coin.ath.toLocaleString()}</span>
+          </div>
+          <div>
+            <p>Market Cap:</p>
+            <span>${chart.coin.market_cap.toLocaleString()}</span>
+          </div>
         </div>
       </div>
     </div>

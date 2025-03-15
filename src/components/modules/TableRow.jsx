@@ -4,8 +4,8 @@ import chartDown from "../../assets/chart-down.svg";
 import styles from "./TableCoins.module.css";
 import { marketChart } from "../../services/cryptoApi";
 
-const TableRow = ({
-  coin: {
+const TableRow = ({ coin, currency, setChart }) => {
+  const {
     id,
     image,
     symbol,
@@ -14,15 +14,13 @@ const TableRow = ({
     total_volume,
     price_change_percentage_24h: price_change,
     // We can change the name by this format above in destructuring.
-  },
-  currency,
-  setChart,
-}) => {
+  } = coin;
+
   const showHandler = async () => {
     try {
       const res = await fetch(marketChart(id));
       const json = await res.json();
-      setChart(json);
+      setChart({ ...json, coin });
     } catch (error) {
       setChart(null);
     }
