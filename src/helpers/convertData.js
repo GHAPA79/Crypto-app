@@ -8,4 +8,11 @@ const convertData = (chart, type) => {
   return convertedData;
 };
 
-export { convertData };
+const convertDate = (timeStamp) => {
+  // Convert timeStamp to Date object
+  const date = new Date(timeStamp);
+  // This is for get Month name of each date
+  return new Intl.DateTimeFormat("en-US", { month: "short" }).format(date);
+};
+
+export { convertData, convertDate };

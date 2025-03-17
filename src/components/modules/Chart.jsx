@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./Chart.module.css";
-import { convertData } from "../../helpers/convertData";
+import { convertData, convertDate } from "../../helpers/convertData";
 import {
   CartesianGrid,
   Legend,
@@ -83,7 +83,7 @@ const ChartComponent = ({ data, type }) => {
         <Line type={"monotone"} dataKey={type} stroke="#3874ff" />
         <CartesianGrid stroke="#404042" strokeWidth="2px" />
         <YAxis dataKey={type} domain={["auto", "auto"]} />
-        <XAxis dataKey="date" hide />
+        <XAxis dataKey={(entry) => convertDate(entry.date)} />
         <Legend />
         {/* show the type of chart in the bottom */}
         <Tooltip />
